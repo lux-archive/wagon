@@ -18,8 +18,6 @@ dependencies = {
 }
 build = {
   type = "none",
-  modules = {
-    install { bin = { "bin/wagon" } }
-  }
+  install = { bin = { "bin/wagon", "bin/wagon-deps.lua" } }
 }
 
