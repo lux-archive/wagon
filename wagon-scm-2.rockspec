@@ -1,8 +1,8 @@
 
 package = "wagon"
-version = "scm-1"
+version = "scm-2"
 source = {
-  url = "https://github.com/lux-archive/wagon"
+  url = "git://github.com/lux-archive/wagon"
 }
 description = {
   summary = "Wagon is a minimalist bundler for Lua rocks.",
