@@ -1,6 +1,6 @@
 --[[
 --
---  Copyright (c) 2018 Wilson Kazuo Mizutani
+--  Copyright (c) 2018-2019 The LUX Archive
 --
 --  Permission is hereby granted, free of charge, to any person obtaining a copy
 --  of this software and associated documentation files (the "Software"), to
@@ -45,11 +45,14 @@ elseif lua_minor >= 2 then
   assert(loadfile(rockspec_path, 't', spec)) ()
 end
 
+local e = string.char(27)
+local PROMPT =  e.."[1m"..e.."[32m[wagon]"..e.."[39m"..e.."[0m"
+
 for _,depstr in ipairs(spec.dependencies) do
   local rockname = depstr:match("^([^ ]+)")
   if rockname ~= 'lua' and rockname ~= 'luarocks' then
     local code = INSTALL_CMD:format(rockname)
-    io.write(code)
+    io.write(PROMPT .. " Run: " .. code)
     assert(os.execute(code), "Failed to install rock '"..rockname.."'")
   end
 end
