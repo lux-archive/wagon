@@ -1,6 +1,6 @@
 
 package = "wagon"
-version = "scm-2"
+version = "scm-3"
 source = {
   url = "git://github.com/lux-archive/wagon"
 }
@@ -14,10 +14,16 @@ for adding and searching rocks.]],
   license = "MIT"
 }
 dependencies = {
-  "lua >= 5.1"
+  "lua >= 5.1",
+  "luafilesystem"
 }
 build = {
-  type = "none",
-  install = { bin = { "bin/wagon", "bin/wagon-deps.lua" } }
+  type = "builtin",
+  install = {
+    bin = { "bin/wagon" }
+  },
+  modules = {
+    wagon = "lib/wagon.lua"
+  }
 }
 

@@ -1,0 +1,80 @@
+#!/bin/bash
+
+PROMPT="\e[1m\e[32m[wagon]\e[39m\e[0m"
+
+# Print script usage in terminal
+usage()
+{
+  echo "Usage:"
+  echo "  $0 <command>"
+  echo "Available commands"
+  echo "  install help"
+  echo "Or, to load the wagon onto a local rocktree:"
+  echo "  source $0 load <lua version>"
+}
+
+set_wagon_env()
+{
+  if [ $# -lt 1 ]; then
+    echo -e "$PROMPT Missing lua version to load"
+    usage
+    exit
+  fi
+
+  ver="_$(echo $1 | sed s/[.]/_/)"
+  rocktree="$(pwd)/.rocktree"
+  config_file="$rocktree/config.lua"
+  
+  echo -e "$PROMPT Rocktree loaded at $rocktree"
+  echo -e "$PROMPT Configuration file path: $config_file"
+
+  export WAGON_ROCKTREE=$rocktree
+  
+  export LUA_PATH$ver="$rocktree/share/lua/$1/?.lua;$rocktree/share/lua/$1/?/init.lua"
+  
+  export LUA_CPATH$ver="$rocktree/lib/lua/$1/?.so"
+  
+  export LUAROCKS_CONFIG$ver=$config_file
+  
+  export PATH="$(pwd)/.rocktree/bin:$PATH"
+  
+  mkdir -p $rocktree
+  
+  if [ ! -f $config_file ]; then
+    echo "rocks_trees = { { name='user', root='$rocktree' } }" > $config_file
+  fi
+  
+  echo -e "$PROMPT Wagon has been successfully loaded"
+}
+
+install_deps()
+{
+  # Use provided rockspec path
+  ROCKSPEC_PATH=$1
+
+  # If no rockpsec is provided, use the first one listed by `ls`
+  if [ $# -lt 1 ]; then
+    ROCKSPEC_PATH=$(ls *.rockspec | head -n 1)
+  fi
+
+  # Install dependencies
+  wagon-deps.lua $ROCKSPEC_PATH
+}
+
+if [ $# -lt 1 ]; then
+  usage
+  exit
+fi
+
+case $1 in
+    load )    set_wagon_env $2
+              ;;
+    help )    usage
+              exit
+              ;;
+    install ) install_deps $2
+              ;;
+    * )       usage
+              exit 1
+esac
+
