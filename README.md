@@ -2,8 +2,8 @@
 # Wagon
 
 Wagon is a minimalist bundler for Lua rocks. It sets up a local rocktree
-directory and directs both Lua and LuaRocks to use that as a working path
-for adding and searching rocks.
+in the current directory and directs both Lua and LuaRocks to use that as a
+working path for adding and searching for rocks.
 
 Wagon relies on bash to work, which means it's likely only useful on UNIX
 systems.
