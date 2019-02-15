@@ -1,5 +1,6 @@
 
 local log = require 'wagon.log'
+local FS_INSPECTOR = require 'wagon.fsinspector'
 
 local WAGON = {}
 
@@ -7,13 +8,16 @@ function WAGON.usage()
   print "Usage:"
   print "  $0 <command>"
   print "Available commands"
-  print "  install help"
-  print "Or, to load the wagon onto a local rocktree:"
-  print "  source $0 load <lua version>"
+  print "  help build load drive"
 end
 
 function WAGON.init(version)
   -- Test if a wagon is built in the current directory
+  if FS_INSPECTOR.hasWagon() then
+    log "Wagon found"
+  else
+    log "Wagon not found"
+  end
   -- If it isn't, build one from scratch:
   --  .wagon/
   --    rocktree/
