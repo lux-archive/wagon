@@ -12,15 +12,26 @@ function WAGON.usage()
   print "  source $0 load <lua version>"
 end
 
-function WAGON.init()
+function WAGON.init(version)
+  -- Test if a wagon is built in the current directory
+  -- If it isn't, build one from scratch:
+  --  .wagon/
+  --    rocktree/
+  --    config.lua
   log "WIP"
 end
 
 function WAGON.install(rockspec_path)
+  -- Find nearest rocktree
+  -- Set up env vars
+  -- Install all dependencies with luarocks locally
   log "WIP"
 end
 
 function WAGON.run(...)
+  -- Find nearest rocktree
+  -- Set up env vars
+  -- Run command
   log "WIP"
 end
 
