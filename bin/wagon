@@ -1,12 +1,15 @@
 #!/usr/bin/env lua
 
-package.path = "./lib/?.lua;" .. package.path
+package.path = "./lua/?.lua;./lua/?/init.lua;" .. package.path
 
 local WAGON = require 'wagon'
 
-if not ... or ... == 'help' then
-  return WAGON.usage()
-end
+local COMMANDS = {
+  help = 'usage',
+  build = 'init',
+  load = 'install',
+  drive = 'run',
+}
 
-
+return WAGON[COMMANDS[... or 'help']](select(2, ...))
 
