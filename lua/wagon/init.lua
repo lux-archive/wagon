@@ -11,18 +11,13 @@ function WAGON.usage()
   print "  help build load drive"
 end
 
+--- Builds wagon in the current directory if it isn't already there.
 function WAGON.init(version)
-  -- Test if a wagon is built in the current directory
   if FS_INSPECTOR.hasWagon() then
-    log "Wagon found"
+    return log "Wagon already found in current directory"
   else
-    log "Wagon not found"
+    return FS_INSPECTOR.buildWagon()
   end
-  -- If it isn't, build one from scratch:
-  --  .wagon/
-  --    rocktree/
-  --    config.lua
-  log "WIP"
 end
 
 function WAGON.install(rockspec_path)

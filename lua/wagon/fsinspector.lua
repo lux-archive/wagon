@@ -12,5 +12,14 @@ function FS_INSPECTOR.hasWagon(dir_path)
   return mode and mode == 'directory'
 end
 
+function FS_INSPECTOR.buildWagon(dir_path)
+  -- If it isn't, build one from scratch:
+  --  .wagon/
+  --    rocktree/
+  --    config.lua
+  log "Building wagon..."
+  log "WIP"
+end
+
 return FS_INSPECTOR
 
