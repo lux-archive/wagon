@@ -1,16 +1,24 @@
 
-local PROMPT = "[wagon]"
+local LOG = {}
 
-local function log(line)
-  print(PROMPT .. " " .. line)
-end
+local _prompt = "[wagon]"
 
 do
   local ok, color = pcall(require, 'ansicolors')
   if ok then
-    PROMPT = color "%{yellow bright}[wagon]%{reset}"
+    _prompt = color "%{yellow bright}[wagon]%{reset}"
   end
 end
 
-return log
+function LOG.write(line)
+  return print(_prompt .. " " .. line)
+end
+
+function LOG.format(line)
+  return function (...)
+    return print(line:format(...))
+  end
+end
+
+return LOG
 
