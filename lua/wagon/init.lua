@@ -12,7 +12,7 @@ function WAGON.usage()
 end
 
 --- Builds wagon in the current directory if it isn't already there.
-function WAGON.init(version)
+function WAGON.init()
   if BUILDER.isWagonBuilt() then
     return LOG.write "Wagon already built in current directory"
   else
@@ -21,14 +21,14 @@ function WAGON.init(version)
 end
 
 function WAGON.install(rockspec_path)
-  -- Find nearest rocktree
+  -- Find nearest wagon
   -- Set up env vars
   -- Install all dependencies with luarocks locally
   LOG.write "WIP"
 end
 
 function WAGON.run(...)
-  -- Find nearest rocktree
+  -- Find nearest wagon
   -- Set up env vars
   -- Run command
   LOG.write "WIP"
