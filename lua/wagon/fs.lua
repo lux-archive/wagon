@@ -14,6 +14,10 @@ function FS.changeDir(path)
   return lfs.chdir(path)
 end
 
+function FS.fullPath(path)
+  return lfs.currentdir() .. "/" .. path
+end
+
 function FS.changeToParentDir()
   local lastdir = lfs.currentdir()
   assert(FS.changeDir('..'))

@@ -1,28 +1,20 @@
 
 local FS  = require 'wagon.fs'
 local LOG = require 'wagon.log'
-
-local WAGON_DIR     = '.wagon/'
-local ROCKTREE_DIR  = WAGON_DIR .. 'rocktree/'
-local CONFIG_FILE   = WAGON_DIR .. 'config.lua'
-
-local CONFIG = [[
-rocks_trees = {
-  { name = 'user', root = '%s' }
-}
-]]
+local DEFS = require 'wagon.defs'
 
 local BUILDER = {}
 
 function BUILDER.isWagonBuilt()
-  return FS.isDir(WAGON_DIR)
+  return FS.isDir(DEFS.WAGON_DIR)
 end
 
 function BUILDER.buildWagon()
   LOG.write "Building wagon..."
-  FS.createDir(WAGON_DIR)
-  FS.createDir(ROCKTREE_DIR)
-  FS.createFile(CONFIG_FILE, CONFIG:format(rocktree_path)) 
+  FS.createDir(DEFS.WAGON_DIR)
+  FS.createDir(DEFS.ROCKTREE_DIR)
+  local config_contents = DEFS.CONFIG:format(FS.fullPath(DEFS.ROCKTREE_DIR))
+  FS.createFile(DEFS.CONFIG_FILE, config_contents)
 end
 
 function BUILDER.findNearest()
