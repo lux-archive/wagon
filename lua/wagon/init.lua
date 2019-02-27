@@ -21,10 +21,13 @@ function WAGON.init()
 end
 
 function WAGON.install(rockspec_path)
-  -- Find nearest wagon
-  -- Set up env vars
-  -- Install all dependencies with luarocks locally
-  LOG.write "WIP"
+  if BUILDER.findNearest() then
+    -- Set up env vars
+    -- Install all dependencies with luarocks locally
+    LOG.write "WIP"
+  else
+    LOG.write "Could not find a wagon to load onto"
+  end
 end
 
 function WAGON.run(...)
