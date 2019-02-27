@@ -25,5 +25,14 @@ function BUILDER.buildWagon()
   FS.createFile(CONFIG_FILE, CONFIG:format(rocktree_path)) 
 end
 
+function BUILDER.findNearest()
+  repeat
+    if FS.isDir(WAGON_DIR) then
+      return true
+    end
+  until not FS.changeToParentDir()
+  return false
+end
+
 return BUILDER
 

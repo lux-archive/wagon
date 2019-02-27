@@ -5,30 +5,31 @@ local LOG = require 'wagon.log'
 
 local FS = {}
 
-local _base_path = ""
-
-function FS.setBasePath(path)
-  _base_path = path .. "/"
-end
-
 function FS.isDir(path)
-  path = _base_path .. path
   local mode = lfs.attributes(path, 'mode')
   return mode and mode == 'directory'
 end
 
+function FS.changeDir(path)
+  return lfs.chdir(path)
+end
+
+function FS.changeToParentDir()
+  local lastdir = lfs.currentdir()
+  assert(FS.changeDir('..'))
+  return lfs.currentdir() ~= lastdir
+end
+
 function FS.createDir(name)
-  local path = _base_path .. name
-  assert(lfs.mkdir(path))
-  LOG.format "  created %s" (path)
+  assert(lfs.mkdir(name))
+  LOG.format "  created %s" (name)
 end
 
 function FS.createFile(name, contents)
-  local path = _base_path .. name
-  local file = io.open(path, 'w')
+  local file = io.open(name, 'w')
   file:write(contents)
   file:close()
-  LOG.format "  created %s" (path)
+  LOG.format "  created %s" (name)
 end
 
 return FS
