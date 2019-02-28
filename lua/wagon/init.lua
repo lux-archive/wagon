@@ -22,7 +22,6 @@ end
 
 function WAGON.install(rockspec_path)
   if BUILDER.findNearest() then
-    -- Set up env vars
     -- Install all dependencies with luarocks locally
     LOG.write "WIP"
   else

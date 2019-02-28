@@ -2,8 +2,11 @@
 local DEFS = {}
 
 DEFS.WAGON_DIR     = '.wagon/'
-DEFS.ROCKTREE_DIR  = WAGON_DIR .. 'rocktree/'
-DEFS.CONFIG_FILE   = WAGON_DIR .. 'config.lua'
+DEFS.ROCKTREE_DIR  = DEFS.WAGON_DIR .. 'rocktree/'
+DEFS.LUA_DIR       = DEFS.ROCKTREE_DIR .. 'share/lua/'
+DEFS.LIB_DIR       = DEFS.ROCKTREE_DIR .. 'lib/lua/'
+DEFS.BIN_DIR       = DEFS.ROCKTREE_DIR .. 'bin/'
+DEFS.CONFIG_FILE   = DEFS.WAGON_DIR .. 'config.lua'
 
 DEFS.CONFIG = [[
 rocks_trees = {
