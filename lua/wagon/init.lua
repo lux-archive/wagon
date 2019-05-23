@@ -1,12 +1,13 @@
 
 local LOG     = require 'wagon.log'
 local BUILDER = require 'wagon.builder'
+local DRIVER  = require 'wagon.driver'
 
 local WAGON = {}
 
 function WAGON.usage()
   print "Usage:"
-  print "  $0 <command>"
+  print "  wagon <command>"
   print "Available commands"
   print "  help build load drive"
 end
@@ -20,8 +21,9 @@ function WAGON.init()
   end
 end
 
-function WAGON.install(rockspec_path)
-  if BUILDER.findNearest() then
+function WAGON.install(rockspec_path) --luacheck: no unused
+  if BUILDER.goToNearestWagon() then
+    DRIVER.run "luarocks --local --tree=.wagon/rocktree install wagon"
     -- Install all dependencies with luarocks locally
     LOG.write "WIP"
   else
@@ -29,7 +31,7 @@ function WAGON.install(rockspec_path)
   end
 end
 
-function WAGON.run(...)
+function WAGON.run(...) --luacheck: no unused
   -- Find nearest wagon
   -- Set up env vars
   -- Run command

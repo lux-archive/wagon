@@ -1,5 +1,6 @@
 #!/usr/bin/env lua
 
+-- FIXME: remove this in production
 package.path = "./lua/?.lua;./lua/?/init.lua;" .. package.path
 
 local WAGON = require 'wagon'
