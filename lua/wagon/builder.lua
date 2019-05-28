@@ -10,7 +10,7 @@ function BUILDER.isWagonBuilt()
 end
 
 function BUILDER.buildWagon()
-  LOG.write "Building wagon..."
+  LOG.info "Building wagon..."
   FS.createDir(DEFS.WAGON_DIR)
   FS.createDir(DEFS.ROCKTREE_DIR)
   local config_contents = DEFS.CONFIG:format(DEFS.ROCKTREE_DIR)
@@ -18,7 +18,6 @@ function BUILDER.buildWagon()
 end
 
 function BUILDER.goToNearestWagon()
-  LOG.write "Finding nearest wagon..."
   repeat
     if FS.isDir(DEFS.WAGON_DIR) then
       return true

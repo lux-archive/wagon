@@ -11,7 +11,7 @@ local _PREAMBLE = 'LUA_PATH_%version="%lua_path" '
                .. 'LUAROCKS_CONFIG_%version="%config_file" '
 
 local _INSTALL_CMD = [[
-luarocks --local --tree=.wagon/rocktree install %s
+luarocks --local --tree=.wagon/rocktree install %s >/dev/null
 ]]
 
 local function _formatPreamble(env)
@@ -29,17 +29,16 @@ function DRIVER.run(command)
   local env = BUNDLER.bundle()
   local preamble = _formatPreamble(env)
   local code = ("%s%s"):format(preamble, command)
-  LOG.write "Run:"
-  LOG.format "%s" (code)
   return assert(os.execute(code), "Command failed")
 end
 
 function DRIVER.loadRockspec(rockspec_path)
-  LOG.write("Loading rocks...")
+  LOG.info "Installing dependency rocks..."
   local spec = FS.loadFile(rockspec_path)
   for _, depstr in ipairs(spec.dependencies) do
     local rockname = depstr:match("^([^ ]+)")
     if rockname ~= 'lua' and rockname ~= 'luarocks' then
+      LOG.raw("  %s", rockname)
       local command = _INSTALL_CMD:format(rockname)
       DRIVER.run(command)
     end

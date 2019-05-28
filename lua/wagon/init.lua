@@ -15,22 +15,24 @@ end
 --- Builds wagon in the current directory if it isn't already there.
 function WAGON.init()
   if BUILDER.isWagonBuilt() then
-    return LOG.write "Wagon already built in current directory"
+    return LOG.info "Wagon is already built in the current directory"
   else
     return BUILDER.buildWagon()
   end
 end
 
+--- Installs all dependencies in the nearest wagon.
+--  @param rockspec_path path to the rockspec file stating the dependencies
 function WAGON.install(rockspec_path)
   if rockspec_path then
-    LOG.write("Loading rockspec '" .. rockspec_path .. "'")
+    LOG.info("Loading rockspec '%s'...", rockspec_path)
     if BUILDER.goToNearestWagon() then
       return DRIVER.loadRockspec(rockspec_path)
     else
-      return LOG.write "Could not find a wagon to load onto"
+      return LOG.info "Could not find a wagon to load onto"
     end
   else
-    LOG.write "Please specify a rockspec file"
+    LOG.info "Please specify a rockspec file"
   end
 end
 
@@ -38,7 +40,7 @@ function WAGON.run(...) --luacheck: no unused
   -- Find nearest wagon
   -- Set up env vars
   -- Run command
-  LOG.write "WIP"
+  LOG.info "WIP"
 end
 
 return WAGON

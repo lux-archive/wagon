@@ -30,14 +30,14 @@ end
 
 function FS.createDir(name)
   assert(lfs.mkdir(name))
-  LOG.format "  created %s" (name)
+  LOG.raw("  created %s", name)
 end
 
 function FS.createFile(name, contents)
   local file = io.open(name, 'w')
   file:write(contents)
   file:close()
-  LOG.format "  created %s" (name)
+  LOG.raw("  created %s", name)
 end
 
 function FS.loadFile(path)

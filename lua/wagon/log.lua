@@ -2,22 +2,22 @@
 local LOG = {}
 
 local _prompt = "[wagon]"
+local _color = function (str) return str end
 
 do
   local ok, color = pcall(require, 'ansicolors')
   if ok then
     _prompt = color "%{yellow bright}[wagon]%{reset}"
+    _color = color
   end
 end
 
-function LOG.write(line)
-  return print(_prompt .. " " .. line)
+function LOG.info(line, ...)
+  return LOG.raw(_prompt .. " " .. line, ...)
 end
 
-function LOG.format(line)
-  return function (...)
-    return print(line:format(...))
-  end
+function LOG.raw(line, ...)
+  return print(_color(line):format(...))
 end
 
 return LOG
