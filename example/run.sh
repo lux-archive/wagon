@@ -4,5 +4,5 @@
 
 ../bin/wagon load example.rockspec
 
-#lua example.lua && echo "Success!"
+../bin/wagon drive lua example.lua && echo "Success!"
 

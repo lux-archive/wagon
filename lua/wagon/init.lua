@@ -37,10 +37,11 @@ function WAGON.install(rockspec_path)
 end
 
 function WAGON.run(...) --luacheck: no unused
-  -- Find nearest wagon
-  -- Set up env vars
-  -- Run command
-  LOG.info "WIP"
+  if BUILDER.goToNearestWagon() then
+    return DRIVER.run(table.concat({ ... }, ' '))
+  else
+    return LOG.info "Could not find a wagon to run command with"
+  end
 end
 
 return WAGON
