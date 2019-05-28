@@ -2,7 +2,9 @@
 local LOG = {}
 
 local _prompt = "[wagon]"
-local _color = function (str) return str end
+local _color = function (str)
+  return str:gsub("%%%{.-%}", "")
+end
 
 do
   local ok, color = pcall(require, 'ansicolors')
