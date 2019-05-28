@@ -5,10 +5,10 @@ local LOG     = require 'wagon.log'
 
 local DRIVER = {}
 
-local _PREAMBLE = 'LUA_PATH_%version="%lua_path" '
-               .. 'LUA_CPATH_%version="%lib_path" '
+local _PREAMBLE = 'LUA_PATH="%lua_path" '
+               .. 'LUA_CPATH="%lib_path" '
                .. 'PATH="%bin_path:$PATH" '
-               .. 'LUAROCKS_CONFIG_%version="%config_file" '
+               .. 'LUAROCKS_CONFIG="%config_file" '
 
 local _INSTALL_CMD = [[
 luarocks --local --tree=.wagon/rocktree install %s >/dev/null
@@ -16,7 +16,6 @@ luarocks --local --tree=.wagon/rocktree install %s >/dev/null
 
 local function _formatPreamble(env)
   local params = {
-    version = table.concat(env.version, '_'),
     lua_path = table.concat(env.lua_paths, ';'),
     lib_path = table.concat(env.lib_paths, ';'),
     bin_path = table.concat(env.bin_paths, ':'),

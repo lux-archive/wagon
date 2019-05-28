@@ -5,10 +5,8 @@ local BUNDLER = {}
 
 function BUNDLER.bundle()
   local version = DEFS.luaVersion()
-  local major, minor = version.major, version.minor
-  local version_folder = '/' .. major .. '.' .. minor
+  local version_folder = '/' .. version.major .. '.' .. version.minor
   local env = {}
-  env.version = { major, minor }
   env.lua_paths = {
     DEFS.LUA_DIR .. version_folder .. "/?.lua",
     DEFS.LUA_DIR .. version_folder .. "/?/init.lua",
