@@ -21,13 +21,16 @@ function WAGON.init()
   end
 end
 
-function WAGON.install(rockspec_path) --luacheck: no unused
-  if BUILDER.goToNearestWagon() then
-    DRIVER.run "luarocks --local --tree=.wagon/rocktree install wagon"
-    -- Install all dependencies with luarocks locally
-    LOG.write "WIP"
+function WAGON.install(rockspec_path)
+  if rockspec_path then
+    LOG.write("Loading rockspec '" .. rockspec_path .. "'")
+    if BUILDER.goToNearestWagon() then
+      return DRIVER.loadRockspec(rockspec_path)
+    else
+      return LOG.write "Could not find a wagon to load onto"
+    end
   else
-    LOG.write "Could not find a wagon to load onto"
+    LOG.write "Please specify a rockspec file"
   end
 end
 

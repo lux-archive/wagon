@@ -18,6 +18,7 @@ function BUILDER.buildWagon()
 end
 
 function BUILDER.goToNearestWagon()
+  LOG.write "Finding nearest wagon..."
   repeat
     if FS.isDir(DEFS.WAGON_DIR) then
       return true

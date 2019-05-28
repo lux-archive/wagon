@@ -4,10 +4,11 @@ local DEFS = require 'wagon.defs'
 local BUNDLER = {}
 
 function BUNDLER.bundle()
-  local major, minor = _VERSION:match("(%d+)%.(%d+)")
+  local version = DEFS.luaVersion()
+  local major, minor = version.major, version.minor
   local version_folder = '/' .. major .. '.' .. minor
   local env = {}
-  env.version = { tonumber(major), tonumber(minor) }
+  env.version = { major, minor }
   env.lua_paths = {
     DEFS.LUA_DIR .. version_folder .. "/?.lua",
     DEFS.LUA_DIR .. version_folder .. "/?/init.lua",

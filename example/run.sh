@@ -1,14 +1,8 @@
 #!/bin/bash
 
-echo "This is an example using Lua 5.3"
+../bin/wagon build
 
-source ../bin/wagon load 5.3
+../bin/wagon load example.rockspec
 
-pushd ..
-luarocks make
-popd
-
-wagon install example.rockspec
-
-lua example.lua && echo "Success!"
+#lua example.lua && echo "Success!"
 

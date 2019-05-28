@@ -14,5 +14,10 @@ rocks_trees = {
 }
 ]]
 
+function DEFS.luaVersion()
+  local major, minor = _VERSION:match("(%d+)%.(%d+)")
+  return { major = tonumber(major), minor = tonumber(minor) }
+end
+
 return DEFS
 
