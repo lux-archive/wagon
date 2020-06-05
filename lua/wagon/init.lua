@@ -22,17 +22,22 @@ function WAGON.init()
 end
 
 --- Installs all dependencies in the nearest wagon.
---  @param rockspec_path path to the rockspec file stating the dependencies
-function WAGON.install(rockspec_path)
-  if rockspec_path then
-    LOG.info("Loading rockspec '%s'...", rockspec_path)
+--  @param name rock name or path to the rockspec file stating the dependencies
+function WAGON.install(name)
+  if name then
     if BUILDER.goToNearestWagon() then
-      return DRIVER.loadRockspec(rockspec_path)
+      if name:match("%.rockspec^") then
+        LOG.info("Loading rockspect '%s'...", name)
+        return DRIVER.loadRockspec(name)
+      else
+        LOG.info("Loading rock '%s'...", name)
+        return DRIVER.loadRock(name)
+      end
     else
       return LOG.info "Could not find a wagon to load onto"
     end
   else
-    LOG.info "Please specify a rockspec file"
+    LOG.info "Please specify a rock name or rockspec file"
   end
 end
 

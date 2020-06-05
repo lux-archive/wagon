@@ -31,15 +31,19 @@ function DRIVER.run(command)
   return assert(os.execute(code), "Command failed")
 end
 
+function DRIVER.loadRock(rockname)
+  LOG.raw("  %s", rockname)
+  local command = _INSTALL_CMD:format(rockname)
+  DRIVER.run(command)
+end
+
 function DRIVER.loadRockspec(rockspec_path)
   LOG.info "Installing dependency rocks..."
   local spec = FS.loadFile(rockspec_path)
   for _, depstr in ipairs(spec.dependencies) do
     local rockname = depstr:match("^([^ ]+)")
     if rockname ~= 'lua' and rockname ~= 'luarocks' then
-      LOG.raw("  %s", rockname)
-      local command = _INSTALL_CMD:format(rockname)
-      DRIVER.run(command)
+      DRIVER.loadRock(rockname)
     end
   end
 end
