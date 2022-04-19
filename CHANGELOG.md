@@ -1,7 +1,13 @@
 
-# 0.2.4
+# Unreleased
+
+## Changes
 
 + Update license copyright
+
+## Fixes
+
++ Fix regex for discerning between installing rockspecs or single rocks
 
 # Older versions
 

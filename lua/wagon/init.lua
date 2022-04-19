@@ -26,8 +26,8 @@ end
 function WAGON.install(name)
   if name then
     if BUILDER.goToNearestWagon() then
-      if name:match("%.rockspec^") then
-        LOG.info("Loading rockspect '%s'...", name)
+      if name:match("%.rockspec$") then
+        LOG.info("Loading rockspec '%s'...", name)
         return DRIVER.loadRockspec(name)
       else
         LOG.info("Loading rock '%s'...", name)
