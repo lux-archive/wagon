@@ -1,9 +1,14 @@
 
+local DEFS    = require 'wagon.defs'
 local LOG     = require 'wagon.log'
 local BUILDER = require 'wagon.builder'
 local DRIVER  = require 'wagon.driver'
 
 local WAGON = {}
+
+function WAGON.version()
+  print(("wagon %s"):format(DEFS.WAGON_VERSION))
+end
 
 function WAGON.usage()
   print "Usage:"

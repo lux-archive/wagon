@@ -1,6 +1,10 @@
 
 # Unreleased
 
+## Additions
+
++ New 'version' command line option
+
 ## Changes
 
 + Update license copyright

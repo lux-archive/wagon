@@ -1,6 +1,7 @@
 
 local DEFS = {}
 
+DEFS.WAGON_VERSION = '0.2.4'
 DEFS.WAGON_DIR     = '.wagon'
 DEFS.ROCKTREE_DIR  = DEFS.WAGON_DIR .. '/rocktree'
 DEFS.LUA_DIR       = DEFS.ROCKTREE_DIR .. '/share/lua'
