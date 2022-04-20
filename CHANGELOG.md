@@ -1,6 +1,8 @@
 
 # Unreleased
 
+# 0.2.4
+
 ## Additions
 
 + Rockspec for upcoming version 0.2.4
