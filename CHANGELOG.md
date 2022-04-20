@@ -3,6 +3,7 @@
 
 ## Additions
 
++ Rockspec for upcoming version 0.2.4
 + New 'version' command line option
 
 ## Changes
