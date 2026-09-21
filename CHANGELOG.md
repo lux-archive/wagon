@@ -3,6 +3,10 @@
 
 # 0.3.0
 
+## Additions
+
++ Rockspec for upcoming version 0.2.4
+
 ## Changes
 
 + Install wagon rocks using same Lua version as wagon's
