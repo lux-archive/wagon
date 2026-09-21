@@ -10,6 +10,7 @@
 
 ## Changes
 
++ Install wagon rocks using same Lua version as wagon's
 + Update license copyright
 
 ## Fixes

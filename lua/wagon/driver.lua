@@ -1,5 +1,6 @@
 
 local BUNDLER = require 'wagon.bundler'
+local DEFS    = require 'wagon.defs'
 local FS      = require 'wagon.fs'
 local LOG     = require 'wagon.log'
 
@@ -11,7 +12,7 @@ local _PREAMBLE = 'LUA_PATH="%lua_path" '
                .. 'LUAROCKS_CONFIG="%config_file" '
 
 local _INSTALL_CMD = [[
-luarocks --local --tree=.wagon/rocktree install %s >/dev/null
+luarocks --local --lua-version=%s --tree=.wagon/rocktree install %s >/dev/null
 ]]
 
 local function _formatPreamble(env)
@@ -33,7 +34,9 @@ end
 
 function DRIVER.loadRock(rockname)
   LOG.raw("  %s", rockname)
-  local command = _INSTALL_CMD:format(rockname)
+  local version = DEFS.luaVersion()
+  local version_string = version.major .. '.' .. version.minor
+  local command = _INSTALL_CMD:format(version_string, rockname)
   DRIVER.run(command)
 end
 
