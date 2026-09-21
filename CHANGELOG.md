@@ -1,6 +1,12 @@
 
 # Unreleased
 
+# 0.3.0
+
+## Changes
+
++ Install wagon rocks using same Lua version as wagon's
+
 # 0.2.4
 
 ## Additions
@@ -10,7 +16,6 @@
 
 ## Changes
 
-+ Install wagon rocks using same Lua version as wagon's
 + Update license copyright
 
 ## Fixes
